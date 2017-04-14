@@ -1,0 +1,31 @@
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>XXX.md</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	</head>
+	<body>
+		<div id="content"></div>
+		<script>
+'use strict';
+
+var electron = require('electron');
+var remote = electron.remote;
+var main = remote.require('./main');
+var fname = main.filename;
+
+window.jQuery = require('./js/jquery');
+
+main.loadFile(fname, function(data){
+	if (!data) {
+		alert("Cannot load " + fname);
+	} else {
+		document.getElementById("content").innerHTML = data;
+		document.title = fname;
+	}
+});
+		</script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
